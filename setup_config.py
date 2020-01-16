@@ -13,7 +13,7 @@ Setup config
 
 
 user_group = [
-    {'name': 'admin', 'remark': '超级管理员', 'authority': 1, 'status': True},
+    {'name': 'admin', 'remark': '超级管理员', 'authority': 999, 'status': True},
 
 ]
 
