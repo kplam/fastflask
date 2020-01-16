@@ -4,12 +4,14 @@
 @Author: Kin P. Lam
 @LastEditors  : Kin P. Lam
 @Date: 2019-04-13 00:52:20
-@LastEditTime : 2020-01-03 03:26:52
+@LastEditTime : 2020-01-17 00:34:11
 '''
 
 """
 change import for diff env 
 """
+
+import platform
 try:
     from .LocalConfig import *
     # from .ProductionConfig import *
@@ -31,7 +33,10 @@ ADMIN_PREFIX  = '/admin'
 # SQL Server
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 SQLALCHEMY_POOL_RECYCLE = 1600
-DB_URI = 'mysql+pymysql://{}:{}@{}:{}/{}?charset=utf8mb4'.format(SQL_USER, SQL_PSW, SQL_SERVER, SQL_PORT, SQL_DB)
+if platform.system() == "Windows":
+    DB_URI = 'mysql+mysqlconnector://{}:{}@{}:{}/{}?charset=utf8mb4'.format(SQL_USER, SQL_PSW, SQL_SERVER, SQL_PORT, SQL_DB)
+else:
+    DB_URI = 'mysql+pymysql://{}:{}@{}:{}/{}?charset=utf8mb4'.format(SQL_USER, SQL_PSW, SQL_SERVER, SQL_PORT, SQL_DB)
 SQLALCHEMY_DATABASE_URI = DB_URI
 
 # redis config
